@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>স্পাইসওয়ার্ল্ড - প্রিমিয়াম গুঁড়া মশলা</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Hind Siliguri', 'Inter', sans-serif;
+            background-color: #F8F9FA;
+        }
+        .nav-link {
+            @apply text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer;
+        }
+        .nav-link.active {
+            @apply text-red-600 font-bold;
+        }
+        .hero-section {
+            background-size: cover;
+            background-position: center;
+        }
+        .btn-primary {
+            @apply bg-red-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-red-700 transition-all duration-300 disabled:opacity-50;
+        }
+        .btn-secondary {
+            @apply bg-transparent border border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-red-600 transition-all duration-300;
+        }
+        .section-title {
+            @apply text-4xl font-bold text-gray-800 text-center;
+        }
+        .section-subtitle {
+            @apply text-lg text-gray-600 text-center mt-2 max-w-2xl mx-auto;
+        }
+        .page-section {
+            display: none;
+        }
+        .page-section.active {
+            display: block;
+        }
+        #toast {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2d3748;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            transition: bottom 0.5s ease-in-out;
+            z-index: 100;
+        }
+        #toast.show {
+            bottom: 30px;
+        }
+        .cart-badge {
+            @apply absolute -top-2 -right-2 bg-yellow-400 text-gray-800 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center;
+        }
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a data-page="home" class="nav-link flex items-center space-x-2 p-0">
+                        <i class="fas fa-pepper-hot text-red-600 text-2xl"></i>
+                        <span class="text-2xl font-bold text-gray-800">SpiceWorld</span>
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a data-page="home" class="nav-link active">Home</a>
+                        <a data-page="products" class="nav-link">Products</a>
+                        <a data-page="about" class="nav-link">About</a>
+                        <a data-page="contact" class="nav-link">Contact</a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                     <a data-page="cart" class="nav-link relative bg-red-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-red-700 transition-colors">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Cart</span>
+                        <span id="cart-count" class="cart-badge hidden">0</span>
+                    </a>
+                    <div class="md:hidden ml-4">
+                        <button id="mobile-menu-button" class="text-gray-800 hover:text-red-600 focus:outline-none">
+                            <i class="fas fa-bars text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <a data-page="home" class="block nav-link text-center border-t">Home</a>
+            <a data-page="products" class="block nav-link text-center border-t">Products</a>
+            <a data-page="about" class="block nav-link text-center border-t">About</a>
+            <a data-page="contact" class="block nav-link text-center border-t border-b">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Page Section -->
+        <section id="home" class="page-section active">
+            <!-- Hero Section with Video Background -->
+            <div class="hero-section relative overflow-hidden">
+                <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
+                    <source src="https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="absolute inset-0 bg-black bg-opacity-60 z-10"></div>
+                <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 py-48 text-center text-white z-20">
+                    <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">প্রিমিয়াম গুঁড়া মশলা</h1>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-200">
+                        খাঁটি গুঁড়া মশলার সেরা সংগ্রহ আবিষ্কার করুন। ঝাল লাল মরিচ থেকে সোনালী হলুদ পর্যন্ত, আপনার রান্নাঘরে ঐতিহ্যবাহী স্বাদ নিয়ে আসুন।
+                    </p>
+                    <div class="mt-8 flex justify-center gap-4">
+                        <button data-page="products" class="btn-primary nav-link">এখনই মশলা কিনুন</button>
+                        <button data-page="about" class="btn-secondary nav-link">আরও জানুন</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premium Spices Section -->
+            <div class="py-24 bg-white">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="section-title">আমাদের প্রিমিয়াম মশলা</h2>
+                    <p class="section-subtitle">হাতে বাছাই করা এবং যত্ন সহকারে প্রক্রিয়াজাত করা গুঁড়া মশলা যা আপনার খাবারে আসল স্বাদ নিয়ে আসে।</p>
+                    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Spice Card 1 -->
+                        <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                            <img src="http://googleusercontent.com/file_content/1" alt="মরিচের গুঁড়া" class="w-full h-56 object-cover cursor-pointer" onclick="app.handleProductClick(7)">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-800 cursor-pointer" onclick="app.handleProductClick(7)">মরিচের গুঁড়া</h3>
+                                <p class="mt-2 text-gray-600">উৎকৃষ্ট মানের শুকনো লাল মরিচ থেকে তৈরি। যেকোনো খাবারে সঠিক ঝাল এবং রঙ যোগ করে।</p>
+                                <div class="mt-4 flex justify-between items-center">
+                                    <span class="text-2xl font-bold text-red-600">৳120</span>
+                                    <button class="add-to-cart-btn bg-red-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-red-700 transition-colors" data-id="7">কার্টে যোগ করুন</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Spice Card 2 -->
+                        <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                            <img src="http://googleusercontent.com/file_content/2" alt="হলুদের গুঁড়া" class="w-full h-56 object-cover cursor-pointer" onclick="app.handleProductClick(6)">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-800 cursor-pointer" onclick="app.handleProductClick(6)">হলুদের গুঁড়া</h3>
+                                <p class="mt-2 text-gray-600">প্রাকৃতিক অ্যান্টি-ইনফ্ল্যামেটরি গুণাবলী সহ খাঁটি সোনালী হলুদের গুঁড়া। তরকারির জন্য অপরিহার্য।</p>
+                                <div class="mt-4 flex justify-between items-center">
+                                    <span class="text-2xl font-bold text-red-600">৳110</span>
+                                    <button class="add-to-cart-btn bg-red-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-red-700 transition-colors" data-id="6">কার্টে যোগ করুন</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Spice Card 3 -->
+                        <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                            <img src="http://googleusercontent.com/file_content/3" alt="ধনিয়ার গুঁড়া" class="w-full h-56 object-cover cursor-pointer" onclick="app.handleProductClick(1)">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-800 cursor-pointer" onclick="app.handleProductClick(1)">ধনিয়ার গুঁড়া</h3>
+                                <p class="mt-2 text-gray-600">উষ্ণ, বাদামের মতো স্বাদের মিহি ধনিয়া বীজ। তরকারি এবং মেরিনেডের জন্য উপযুক্ত।</p>
+                                <div class="mt-4 flex justify-between items-center">
+                                    <span class="text-2xl font-bold text-red-600">৳90</span>
+                                    <button class="add-to-cart-btn bg-red-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-red-700 transition-colors" data-id="1">কার্টে যোগ করুন</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-12 text-center">
+                        <button data-page="products" class="btn-primary nav-link">সব মশলা দেখুন</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Why Choose Us Section -->
+            <div class="py-24 bg-gray-50">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="section-title">কেন আমাদের মশলা বেছে নেবেন?</h2>
+                    <p class="section-subtitle">আমরা আপোষহীন মান বজায় রেখে আপনাকে সেরা মানের গুঁড়া মশলা সরবরাহ করতে প্রতিশ্রুতিবদ্ধ।</p>
+                    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                        <div class="p-8 bg-white rounded-lg shadow-md">
+                            <i class="fas fa-leaf text-4xl text-red-600"></i>
+                            <h3 class="mt-4 text-xl font-bold text-gray-800">১০০% প্রাকৃতিক</h3>
+                            <p class="mt-2 text-gray-600">কোনো কৃত্রিম রঙ, প্রিজারভেটিভ বা অ্যাডিটিভ নেই। প্রকৃতির মতো বিশুদ্ধ, প্রাকৃতিক মশলা।</p>
+                        </div>
+                        <div class="p-8 bg-white rounded-lg shadow-md">
+                            <i class="fas fa-medal text-4xl text-red-600"></i>
+                            <h3 class="mt-4 text-xl font-bold text-gray-800">প্রিমিয়াম কোয়ালিটি</h3>
+                            <p class="mt-2 text-gray-600">সর্বোচ্চ স্বাদ এবং সুগন্ধ ধরে রাখতে ঐতিহ্যবাহী পদ্ধতিতে সাবধানে বাছাই এবং প্রক্রিয়াজাত করা হয়।</p>
+                        </div>
+                        <div class="p-8 bg-white rounded-lg shadow-md">
+                            <i class="fas fa-truck-fast text-4xl text-red-600"></i>
+                            <h3 class="mt-4 text-xl font-bold text-gray-800">সতেজ ডেলিভারি</h3>
+                            <p class="mt-2 text-gray-600">আমাদের প্রক্রিয়াকরণ কেন্দ্র থেকে সরাসরি আপনার রান্নাঘরে। সতেজতা বজায় রাখতে দ্রুত শিপিং।</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="bg-red-600">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+                    <h2 class="text-4xl font-bold text-white">আপনার রান্নাকে আরও মজাদার করতে প্রস্তুত?</h2>
+                    <p class="mt-4 text-lg text-red-100 max-w-2xl mx-auto">হাজার হাজার রাঁধুনিদের সাথে যোগ দিন যারা প্রতিদিন খাঁটি, সুস্বাদু খাবারের জন্য আমাদের প্রিমিয়াম গুঁড়া মশলার উপর আস্থা রাখেন।</p>
+                    <div class="mt-8">
+                        <button data-page="products" class="bg-white text-red-600 font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors nav-link">এখনই কেনাকাটা শুরু করুন</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Page Section -->
+        <section id="products" class="page-section">
+            <div class="bg-red-600 py-16">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h1 class="text-5xl font-bold text-white">প্রিমিয়াম মশলার সংগ্রহ</h1>
+                    <p class="mt-2 text-red-100 text-lg">আমাদের খাঁটি গুঁড়া মশলার সম্পূর্ণ পরিসর আবিষ্কার করুন, যা সর্বোচ্চ স্বাদের জন্য সাবধানে সংগ্রহ এবং প্রক্রিয়াজাত করা হয়েছে।</p>
+                </div>
+            </div>
+            <div class="py-16 bg-white">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- Filters -->
+                    <div id="product-filters" class="flex flex-wrap items-center justify-center gap-2 mb-8">
+                        <button data-filter="all" class="px-4 py-2 bg-red-600 text-white rounded-full text-sm font-semibold">সব</button>
+                        <button data-filter="Chili" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-semibold hover:bg-gray-300">মরিচের গুঁড়া</button>
+                        <button data-filter="Turmeric" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-semibold hover:bg-gray-300">হলুদ</button>
+                        <button data-filter="Coriander" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-semibold hover:bg-gray-300">ধনিয়া</button>
+                        <button data-filter="Garam Masala" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-semibold hover:bg-gray-300">গরম মশলা</button>
+                        <button data-filter="Curry" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-semibold hover:bg-gray-300">কারি পাউডার</button>
+                    </div>
+                    
+                    <!-- Product Grid -->
+                    <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Product items will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+            <!-- Custom Blends CTA -->
+            <div class="bg-red-600">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+                    <h2 class="text-4xl font-bold text-white">যা খুঁজছেন তা পাচ্ছেন না?</h2>
+                    <p class="mt-4 text-lg text-red-100 max-w-2xl mx-auto">কাস্টম মশলার মিশ্রণ বা বিশেষ অনুরোধের জন্য আমাদের সাথে যোগাযোগ করুন। আমরা আপনাকে নিখুঁত স্বাদ তৈরি করতে সাহায্য করতে এখানে আছি।</p>
+                    <div class="mt-8">
+                        <button data-page="contact" class="bg-white text-red-600 font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors nav-link">যোগাযোগ করুন</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Detail Page Section -->
+        <section id="product-detail" class="page-section py-24 bg-white">
+             <!-- Content will be dynamically inserted here -->
+        </section>
+
+        <!-- Cart Page Section -->
+        <section id="cart" class="page-section py-24 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl font-bold text-gray-800 text-center mb-12">আপনার শপিং কার্ট</h1>
+                <div id="cart-items-container">
+                    <!-- Cart items will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Checkout Page Section -->
+        <section id="checkout" class="page-section py-24 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl font-bold text-gray-800 text-center mb-12">চেকআউট</h1>
+                <div id="checkout-container" class="grid lg:grid-cols-2 gap-12">
+                    <!-- Checkout form will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Page Section -->
+        <section id="admin" class="page-section py-24 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl font-bold text-gray-800 text-center mb-12">অ্যাডমিন - অর্ডারসমূহ</h1>
+                <div id="order-list" class="space-y-6">
+                    <!-- Orders will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page Section -->
+        <section id="about" class="page-section">
+            <!-- About Hero -->
+            <div class="relative bg-gray-800">
+                <img class="absolute inset-0 w-full h-full object-cover opacity-30" src="https://images.pexels.com/photos/2253634/pexels-photo-2253634.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Spices Banner">
+                <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center text-white">
+                    <h1 class="text-6xl font-extrabold">আমাদের গল্প</h1>
+                    <p class="mt-4 text-xl max-w-3xl mx-auto">তিন প্রজন্মের খাঁটি মশলার প্রতি আবেগ, যা ঐতিহ্যবাহী পদ্ধতি থেকে সেরা স্বাদ আপনার কাছে নিয়ে আসে।</p>
+                </div>
+            </div>
+
+            <!-- Heritage Section -->
+            <div class="py-24 bg-white">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 class="text-4xl font-bold text-gray-800">ঐতিহ্য থেকে আপনার রান্নাঘরে</h2>
+                            <p class="mt-4 text-gray-600">১৯৮৫ সালে কুমার পরিবার দ্বারা প্রতিষ্ঠিত, স্পাইসওয়ার্ল্ড ভারতের কেরালার কেন্দ্রস্থলে একটি ছোট স্থানীয় মশলা پেষার কারখানা হিসাবে শুরু হয়েছিল। বিশুদ্ধ, সুগন্ধি মশলার প্রতি আবেগ এবং গুণমানের প্রতি প্রতিশ্রুতি থেকে যা শুরু হয়েছিল, তা আজ বিশ্বব্যাপী প্রিমিয়াম গুঁড়া মশলার জন্য একটি বিশ্বস্ত নাম হয়ে উঠেছে।</p>
+                            <p class="mt-4 text-gray-600">আমাদের প্রতিষ্ঠাতা, রাজেশ কুমার, তার দাদার কাছ থেকে মশলা প্রক্রিয়াকরণের শিল্প শিখেছিলেন। তিনি আমাদের মধ্যে এই বিশ্বাস স্থাপন করেছিলেন যে দুর্দান্ত স্বাদের রহস্য কেবল কাঁচামালের গুণমানে নয়, বরং সেগুলি প্রক্রিয়াকরণে ব্যবহৃত যত্ন এবং ঐতিহ্যবাহী পদ্ধতির মধ্যেও নিহিত।</p>
+                             <p class="mt-4 text-gray-600">আজ, আমরা সেই সময়-পরীক্ষিত কৌশলগুলিকে সম্মান করার পাশাপাশি আধুনিক গুণমানের মানগুলিকে একীভূত করে চলেছি, যাতে আমাদের প্রতিটি মশলার প্যাকেজ সেই খাঁটি স্বাদ এবং সুগন্ধ সরবরাহ করে যা আমাদের একটি পরিচিত নাম করে তুলেছে।</p>
+                        </div>
+                        <div>
+                            <img src="https://images.pexels.com/photos/3735165/pexels-photo-3735165.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Spice Grinding" class="rounded-lg shadow-xl w-full">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mission & Values Section -->
+            <div class="py-24 bg-gray-50">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="section-title">আমাদের লক্ষ্য ও মূল্যবোধ</h2>
+                    <p class="section-subtitle">আমরা ঐতিহ্যবাহী পদ্ধতি সংরক্ষণ এবং স্থানীয় কৃষি সম্প্রদায়কে সমর্থন করার পাশাপাশি আপনাকে খাঁটি স্বাদ সরবরাহ করতে প্রতিশ্রুতিবদ্ধ।</p>
+                    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                        <div class="p-8 bg-white rounded-lg shadow-md">
+                            <i class="fas fa-hands-holding-heart text-4xl text-red-600"></i>
+                            <h3 class="mt-4 text-xl font-bold text-gray-800">খাঁটিত্ব</h3>
+                            <p class="mt-2 text-gray-600">আমরা প্রজন্মের পর প্রজন্ম ধরে চলে আসা ঐতিহ্যবাহী প্রক্রিয়াকরণ পদ্ধতি এবং খাঁটি রেসিপি সংরক্ষণ করি, প্রতিটি পণ্যে আসল স্বাদ নিশ্চিত করি।</p>
+                        </div>
+                        <div class="p-8 bg-white rounded-lg shadow-md">
+                            <i class="fas fa-seedling text-4xl text-red-600"></i>
+                            <h3 class="mt-4 text-xl font-bold text-gray-800">স্থিতিশীলতা</h3>
+                            <p class="mt-2 text-gray-600">আমরা বিশ্বস্ত কৃষকদের সাথে কাজ করি যারা টেকসই চাষাবাদ অনুশীলন করে, সম্প্রদায়কে সমর্থন করে এবং সর্বোচ্চ মানের কাঁচামাল নিশ্চিত করে।</p>
+                        </div>
+                        <div class="p-8 bg-white rounded-lg shadow-md">
+                            <i class="fas fa-star text-4xl text-red-600"></i>
+                            <h3 class="mt-4 text-xl font-bold text-gray-800">শ্রেষ্ঠত্ব</h3>
+                            <p class="mt-2 text-gray-600">প্রতিটি ব্যাচ আপনার রান্নাঘরে পৌঁছানোর আগে বিশুদ্ধতা, স্বাদ এবং সুগন্ধের জন্য আমাদের উচ্চ মান পূরণের জন্য কঠোর গুণমান পরীক্ষার মধ্য দিয়ে যায়।</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Section -->
+            <div class="py-24 bg-white">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="section-title">আমাদের দলের সাথে পরিচিত হন</h2>
+                    <p class="section-subtitle">স্পাইসওয়ার্ল্ডের পেছনের উৎসাহী ব্যক্তিরা যারা নিশ্চিত করে যে প্রতিটি পণ্য আমাদের গুণমান এবং খাঁটিত্বের উচ্চ মান পূরণ করে।</p>
+                    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="রাজেশ কুমার" class="w-48 h-48 mx-auto rounded-full shadow-lg object-cover">
+                            <h3 class="mt-6 text-xl font-bold text-gray-800">রাজেশ কুমার</h3>
+                            <p class="text-red-600 font-semibold">প্রতিষ্ঠাতা ও সিইও</p>
+                            <p class="mt-2 text-gray-600">মশলা প্রক্রিয়াকরণে ৩৫ বছরেরও বেশি অভিজ্ঞতার সাথে, রাজেশ গুণমান নিয়ন্ত্রণ এবং আমাদের ঐতিহ্যবাহী পদ্ধতি বজায় রাখার তত্ত্বাবধান করেন।</p>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="প্রিয়া শর্মা" class="w-48 h-48 mx-auto rounded-full shadow-lg object-cover">
+                            <h3 class="mt-6 text-xl font-bold text-gray-800">প্রিয়া শর্মা</h3>
+                            <p class="text-red-600 font-semibold">গুণমান নিশ্চিতকরণ পরিচালক</p>
+                            <p class="mt-2 text-gray-600">একজন খাদ্য বিজ্ঞানী, প্রিয়া আমাদের প্রক্রিয়াকরণ এবং গুণমান নিয়ন্ত্রণে গুরুত্বপূর্ণ ভূমিকা পালন করেন, নিশ্চিত করেন যে প্রতিটি ব্যাচ আমাদের কঠোর মান পূরণ করে।</p>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://images.pexels.com/photos/837358/pexels-photo-837358.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="অর্জুন প্যাটেল" class="w-48 h-48 mx-auto rounded-full shadow-lg object-cover">
+                            <h3 class="mt-6 text-xl font-bold text-gray-800">অর্জুন প্যাটেল</h3>
+                            <p class="text-red-600 font-semibold">অপারেশনস ম্যানেজার</p>
+                            <p class="mt-2 text-gray-600">আমাদের সরবরাহ শৃঙ্খল এবং কৃষক সম্পর্ক পরিচালনা করেন, টেকসই উৎস এবং প্রিমিয়াম মশলার সময়মত ডেলিভারি নিশ্চিত করেন।</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Process Section -->
+            <div class="py-24 bg-red-600 text-white">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-4xl font-bold text-center">আমাদের প্রক্রিয়া</h2>
+                    <p class="text-lg text-red-100 text-center mt-2 max-w-2xl mx-auto">খামার থেকে আপনার রান্নাঘর পর্যন্ত, প্রতিটি পদক্ষেপ সর্বোচ্চ স্বাদ এবং গুণমান সংরক্ষণের জন্য সাবধানে পরিচালিত হয়।</p>
+                    <div class="mt-12 grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                        <div>
+                            <div class="bg-white text-red-600 w-20 h-20 mx-auto rounded-full flex items-center justify-center text-3xl"><i class="fas fa-tractor"></i></div>
+                            <h3 class="mt-4 text-xl font-bold">১. সংগ্রহ</h3>
+                            <p class="mt-2 text-red-200">টেকসই চাষাবাদ অনুশীলনকারী বিশ্বস্ত কৃষকদের সাথে সরাসরি অংশীদারিত্ব।</p>
+                        </div>
+                        <div>
+                            <div class="bg-white text-red-600 w-20 h-20 mx-auto rounded-full flex items-center justify-center text-3xl"><i class="fas fa-hand-holding-seedling"></i></div>
+                            <h3 class="mt-4 text-xl font-bold">২. নির্বাচন</h3>
+                            <p class="mt-2 text-red-200">রঙ, সুগন্ধ এবং গুণমানের উপর ভিত্তি করে সেরা মশলার হাতে বাছাই করা নির্বাচন।</p>
+                        </div>
+                        <div>
+                            <div class="bg-white text-red-600 w-20 h-20 mx-auto rounded-full flex items-center justify-center text-3xl"><i class="fas fa-cogs"></i></div>
+                            <h3 class="mt-4 text-xl font-bold">৩. প্রক্রিয়াকরণ</h3>
+                            <p class="mt-2 text-red-200">আধুনিক স্বাস্থ্যবিধি মানগুলির সাথে মিলিত ঐতিহ্যবাহী پেষণ পদ্ধতি।</p>
+                        </div>
+                        <div>
+                            <div class="bg-white text-red-600 w-20 h-20 mx-auto rounded-full flex items-center justify-center text-3xl"><i class="fas fa-box-open"></i></div>
+                            <h3 class="mt-4 text-xl font-bold">৪. প্যাকেজিং</h3>
+                            <p class="mt-2 text-red-200">স্বাদ সংরক্ষণ এবং শেলফ লাইফ বাড়ানোর জন্য এয়ার-টাইট প্যাকেজিংয়ে তাজা সিল করা হয়।</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page Section -->
+        <section id="contact" class="page-section">
+             <div class="bg-red-600 py-16">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h1 class="text-5xl font-bold text-white">যোগাযোগ করুন</h1>
+                    <p class="mt-2 text-red-100 text-lg max-w-2xl mx-auto">আমাদের মশলা সম্পর্কে প্রশ্ন আছে বা আপনার অর্ডারে সাহায্যের প্রয়োজন? আমরা আপনাকে আশ্চর্যজনক স্বাদ তৈরি করতে সাহায্য করতে এখানে আছি।</p>
+                </div>
+            </div>
+            <div class="py-24 bg-white">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid lg:grid-cols-5 gap-12">
+                        <!-- Contact Form -->
+                        <div class="lg:col-span-3 bg-gray-50 p-8 rounded-lg shadow-lg">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">আমাদের একটি বার্তা পাঠান</h2>
+                            <form action="mailto:mdamzadhossainforhad612981@gmail.com" method="post" enctype="text/plain" class="space-y-6">
+                                <div class="grid sm:grid-cols-2 gap-6">
+                                    <div>
+                                        <label for="name" class="block text-sm font-medium text-gray-700">নাম *</label>
+                                        <input type="text" name="name" id="name" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm p-3">
+                                    </div>
+                                    <div>
+                                        <label for="email" class="block text-sm font-medium text-gray-700">ইমেইল *</label>
+                                        <input type="email" name="email" id="email" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm p-3">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="subject" class="block text-sm font-medium text-gray-700">বিষয়</label>
+                                    <input type="text" name="subject" id="subject" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm p-3">
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-gray-700">বার্তা *</label>
+                                    <textarea id="message" name="message" rows="5" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm p-3"></textarea>
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn-primary w-full">বার্তা পাঠান</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Contact Info -->
+                        <div class="lg:col-span-2 space-y-8">
+                            <h2 class="text-3xl font-bold text-gray-800">যোগাযোগের তথ্য</h2>
+                             <div class="flex items-start space-x-4">
+                                <i class="fas fa-phone text-2xl text-red-600 mt-1"></i>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-800">ফোন</h3>
+                                    <p class="text-gray-600">অবিলম্বে সহায়তার জন্য আমাদের কল করুন</p>
+                                    <a href="tel:5551234567" class="text-red-600 hover:underline">(555) 123-4567</a>
+                                    <p class="text-sm text-gray-500">সোম-শুক্র, সকাল ৯টা - সন্ধ্যা ৬টা</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start space-x-4">
+                                <i class="fas fa-envelope text-2xl text-red-600 mt-1"></i>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-800">ইমেইল</h3>
+                                    <p class="text-gray-600">আপনার প্রশ্ন যেকোনো সময় পাঠান</p>
+                                    <a href="mailto:mdamzadhossainforhad612981@gmail.com" class="text-red-600 hover:underline">mdamzadhossainforhad612981@gmail.com</a>
+                                    <p class="text-sm text-gray-500">আমরা ২৪ ঘণ্টার মধ্যে উত্তর দিই</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start space-x-4">
+                                <i class="fas fa-map-marker-alt text-2xl text-red-600 mt-1"></i>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-800">ঠিকানা</h3>
+                                    <p class="text-gray-600">আমাদের প্রক্রিয়াকরণ কেন্দ্রে আসুন</p>
+                                    <p class="text-gray-600">১২৩ স্পাইস গার্ডেন লেন,<br>কেরালা, ভারত ৬৮২০০১</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start space-x-4">
+                                <i class="fas fa-clock text-2xl text-red-600 mt-1"></i>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-800">ব্যবসায়িক সময়</h3>
+                                    <p class="text-gray-600">সোমবার - শুক্রবার: সকাল ৯:০০ - সন্ধ্যা ৬:০০</p>
+                                    <p class="text-gray-600">শনিবার: সকাল ১০:০০ - বিকাল ৪:০০</p>
+                                    <p class="text-gray-600">রবিবার: বন্ধ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Map Section -->
+             <div class="py-24 bg-gray-50">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="section-title">আমাদের খুঁজুন</h2>
+                    <p class="section-subtitle">কেরালার মশলা অঞ্চলের কেন্দ্রস্থলে অবস্থিত।</p>
+                    <div class="mt-8 rounded-lg shadow-xl overflow-hidden">
+                        <iframe class="w-full h-96" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39088.99999999999!2d76.267304!3d9.931232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d514abec6bf%3A0xbd582caa58441823!2sKerala%2C%20India!5e0!3m2!1sen!2sbd!4v1678886456789!5m2!1sen!2sbd" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="py-24 bg-white">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="section-title">সাধারণ জিজ্ঞাস্য প্রশ্ন</h2>
+                    <p class="section-subtitle">সাধারণ প্রশ্নের দ্রুত উত্তর।</p>
+                    <div class="mt-8 max-w-3xl mx-auto space-y-4" id="faq-container">
+                        <div class="faq-item bg-gray-50 p-6 rounded-lg shadow-sm">
+                            <button class="faq-question w-full text-left flex justify-between items-center text-lg font-semibold text-gray-800">
+                                আপনাদের মশলা কতদিন তাজা থাকে?
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer hidden mt-4 text-gray-600">
+                                আমাদের গুঁড়া মশলা ঠান্ডা, শুকনো জায়গায় তাদের আসল প্যাকেজিংয়ে রাখলে ১৮-২৪ মাস পর্যন্ত সর্বোচ্চ স্বাদ বজায় রাখে। সেরা ফলাফলের জন্য আমরা ১২ মাসের মধ্যে ব্যবহার করার পরামর্শ দিই।
+                            </div>
+                        </div>
+                        <div class="faq-item bg-gray-50 p-6 rounded-lg shadow-sm">
+                            <button class="faq-question w-full text-left flex justify-between items-center text-lg font-semibold text-gray-800">
+                                আপনারা কি রেস্তোরাঁর জন্য বাল্ক প্রাইসিং অফার করেন?
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer hidden mt-4 text-gray-600">
+                                হ্যাঁ! আমরা বাল্ক অর্ডার এবং রেস্তোরাঁ অংশীদারিত্বের জন্য বিশেষ মূল্য অফার করি। একটি কাস্টম কোটেশনের জন্য আপনার প্রয়োজনীয়তা সহ আমাদের সাথে যোগাযোগ করুন।
+                            </div>
+                        </div>
+                        <div class="faq-item bg-gray-50 p-6 rounded-lg shadow-sm">
+                            <button class="faq-question w-full text-left flex justify-between items-center text-lg font-semibold text-gray-800">
+                                আপনারা কি কাস্টম মশলার মিশ্রণ তৈরি করতে পারেন?
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer hidden mt-4 text-gray-600">
+                                অবশ্যই! আমরা আপনার নির্দিষ্ট প্রয়োজনীয়তার উপর ভিত্তি করে কাস্টম মিশ্রণ তৈরিতে বিশেষজ্ঞ। ন্যূনতম অর্ডারের পরিমাণ প্রযোজ্য।
+                            </div>
+                        </div>
+                         <div class="faq-item bg-gray-50 p-6 rounded-lg shadow-sm">
+                            <button class="faq-question w-full text-left flex justify-between items-center text-lg font-semibold text-gray-800">
+                                আপনাদের শিপিং অপশন কি কি?
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer hidden mt-4 text-gray-600">
+                                আমরা স্ট্যান্ডার্ড (৫-৭ দিন) এবং এক্সপ্রেস (২-৩ দিন) শিপিং অপশন অফার করি। $৫০ এর বেশি অর্ডারে বিনামূল্যে শিপিং। আন্তর্জাতিক শিপিং উপলব্ধ।
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- About -->
+                <div class="md:col-span-1">
+                    <a data-page="home" class="nav-link flex items-center space-x-2 p-0">
+                        <i class="fas fa-pepper-hot text-red-500 text-2xl"></i>
+                        <span class="text-2xl font-bold">SpiceWorld</span>
+                    </a>
+                    <p class="mt-4 text-gray-400">Premium spice powders for authentic flavors in every dish.</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold">Quick Links</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a data-page="products" class="text-gray-400 hover:text-white nav-link p-0">All Products</a></li>
+                        <li><a data-page="about" class="text-gray-400 hover:text-white nav-link p-0">About Us</a></li>
+                        <li><a data-page="contact" class="text-gray-400 hover:text-white nav-link p-0">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- Customer Service -->
+                <div>
+                    <h3 class="text-lg font-semibold">Customer Service</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Info</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Returns</a></li>
+                        <li><a data-page="contact" class="text-gray-400 hover:text-white nav-link p-0">FAQ</a></li>
+                        <li><a data-page="admin" class="text-gray-400 hover:text-white nav-link p-0">Admin</a></li>
+                    </ul>
+                </div>
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-semibold">Contact Info</h3>
+                    <ul class="mt-4 space-y-2 text-gray-400">
+                        <li>Email: mdamzadhossainforhad612981@gmail.com</li>
+                        <li>Phone: (555) 123-4567</li>
+                        <li>Mon-Fri: 9AM-6PM EST</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-8 text-center text-gray-500">
+                <p>&copy; 2024 SpiceWorld. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Element -->
+    <div id="toast"></div>
+
+    <!-- Admin Password Modal -->
+    <div id="admin-password-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-sm">
+            <h2 class="text-2xl font-bold text-center mb-6">Admin Login</h2>
+            <form id="admin-login-form">
+                <div class="space-y-4">
+                    <div>
+                        <label for="admin-password" class="block text-sm font-medium text-gray-700">Password</label>
+                        <input type="password" id="admin-password" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-3">
+                    </div>
+                    <p id="admin-error" class="text-red-500 text-sm hidden">Incorrect password. Please try again.</p>
+                    <div>
+                        <button type="submit" class="btn-primary w-full">Login</button>
+                        <button type="button" id="cancel-admin-login" class="mt-2 w-full text-center text-gray-600 hover:text-gray-800 py-2">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            // --- DATA ---
+            const products = [
+                { id: 1, name: 'ধনিয়ার গুঁড়া', price: 90, image: 'http://googleusercontent.com/file_content/3', description: 'উষ্ণ, বাদামের মতো স্বাদের মিহি ধনিয়া বীজ। তরকারি এবং মেরিনেডের জন্য উপযুক্ত।', category: 'Coriander' },
+                { id: 2, name: 'কারি পাউডার', price: 150, image: 'https://images.pexels.com/photos/610934/pexels-photo-610934.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', description: 'মশলার একটি সমৃদ্ধ এবং সুগন্ধি মিশ্রণ, যা খাঁটি স্বাদের সাথে মজাদার তরকারি এবং স্টু তৈরির জন্য উপযুক্ত।', category: 'Curry' },
+                { id: 3, name: 'গরম মশলা গুঁড়া', price: 180, image: 'https://images.pexels.com/photos/8774479/pexels-photo-8774479.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', description: 'খাঁটি ভারতীয় রান্নার জন্য অপরিহার্য সুগন্ধি মশলার একটি সুগন্ধি মিশ্রণ। যেকোনো খাবারে উষ্ণতা এবং গভীরতা যোগ করে।', category: 'Garam Masala' },
+                { id: 4, name: 'ঝাল মরিচের গুঁড়া', price: 130, image: 'http://googleusercontent.com/file_content/1', description: 'যারা তীব্র ঝাল এবং স্বাদ পছন্দ করেন তাদের জন্য অতিরিক্ত ঝাল। সেরা সূর্য-শুকনো লাল মরিচ থেকে তৈরি।', category: 'Chili' },
+                { id: 5, name: 'কাশ্মীরি লাল মরিচ', price: 160, image: 'http://googleusercontent.com/file_content/1', description: 'এর প্রাণবন্ত লাল রঙ এবং হালকা ঝালের জন্য পরিচিত, এই মরিচের গুঁড়া তন্দুরি ডিশ এবং তরকারির জন্য উপযুক্ত।', category: 'Chili' },
+                { id: 6, name: 'অর্গানিক হলুদ', price: 110, image: 'http://googleusercontent.com/file_content/2', description: 'উচ্চ কারকিউমিন সামগ্রী সহ সার্টিফাইড জৈব হলুদের গুঁড়া, যা তার স্বাস্থ্য উপকারিতা এবং মাটির স্বাদের জন্য পরিচিত।', category: 'Turmeric' },
+                { id: 7, name: 'মরিচের গুঁড়া', price: 120, image: 'http://googleusercontent.com/file_content/1', description: 'একটি বহুমুখী মরিচের গুঁড়া যা আপনার খাবারে একটি মাঝারি স্তরের ঝাল এবং একটি সুন্দর লাল আভা প্রদান করে।', category: 'Chili' },
+                { id: 8, name: 'ভাজা ধনিয়ার গুঁড়া', price: 100, image: 'http://googleusercontent.com/file_content/3', description: 'শুকনো ভাজা এবং গুঁড়া করা ধনিয়া বীজ, যা সাধারণ ধনিয়ার চেয়ে আরও তীব্র, বাদামের মতো এবং জটিল স্বাদ প্রদান করে।', category: 'Coriander' },
+            ];
+            let cart = [];
+            let orders = [];
+            let isAdminAuthenticated = false;
+            const ADMIN_PASSWORD = 'owner';
+
+            // --- DOM ELEMENTS ---
+            const pageSections = document.querySelectorAll('.page-section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const productGrid = document.getElementById('product-grid');
+            const productFilters = document.getElementById('product-filters');
+            const productDetailSection = document.getElementById('product-detail');
+            const cartCountEl = document.getElementById('cart-count');
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            const checkoutContainer = document.getElementById('checkout-container');
+            const orderListContainer = document.getElementById('order-list');
+            const toastEl = document.getElementById('toast');
+            const faqContainer = document.getElementById('faq-container');
+            const adminPasswordModal = document.getElementById('admin-password-modal');
+            const adminLoginForm = document.getElementById('admin-login-form');
+            const adminPasswordInput = document.getElementById('admin-password');
+            const adminErrorMsg = document.getElementById('admin-error');
+            const cancelAdminLoginBtn = document.getElementById('cancel-admin-login');
+
+
+            // --- ROUTING & PAGE DISPLAY ---
+            function showPage(pageId, params = null) {
+                if (pageId === 'admin' && !isAdminAuthenticated) {
+                    adminPasswordModal.classList.remove('hidden');
+                    return; 
+                }
+
+                pageSections.forEach(section => section.classList.remove('active'));
+                
+                const targetSection = document.getElementById(pageId);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.page === pageId && !link.closest('footer')) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                if (pageId === 'products') renderProducts();
+                if (pageId === 'product-detail' && params) renderProductDetail(params.get('id'));
+                if (pageId === 'cart') renderCart();
+                if (pageId === 'checkout') renderCheckout();
+                if (pageId === 'admin' && isAdminAuthenticated) renderAdminOrders();
+
+
+                window.scrollTo(0, 0);
+                mobileMenu.classList.add('hidden');
+            }
+
+            function handleNavClick(e) {
+                e.preventDefault();
+                const pageId = e.currentTarget.dataset.page;
+                const url = new URL(window.location);
+                url.hash = pageId;
+                
+                if (pageId !== 'product-detail') {
+                    url.search = '';
+                }
+
+                history.pushState({}, '', url);
+                showPage(pageId);
+            }
+            
+            function handleProductClick(productId) {
+                const url = new URL(window.location);
+                url.hash = 'product-detail';
+                url.searchParams.set('id', productId);
+                history.pushState({}, '', url);
+                showPage('product-detail', url.searchParams);
+            }
+
+            // --- RENDERING FUNCTIONS ---
+            function renderProducts(filter = 'all') {
+                if(!productGrid) return;
+                productGrid.innerHTML = '';
+                const filteredProducts = filter === 'all' ? products : products.filter(p => p.category === filter);
+
+                filteredProducts.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'bg-gray-50 rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col';
+                    productCard.innerHTML = `
+                        <div class="cursor-pointer" onclick="app.handleProductClick(${product.id})">
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-lg font-bold text-gray-800 cursor-pointer" onclick="app.handleProductClick(${product.id})">${product.name}</h3>
+                            <p class="mt-1 text-sm text-gray-600 flex-grow">${product.description.substring(0, 80)}...</p>
+                            <div class="mt-3 flex justify-between items-center">
+                                <span class="text-xl font-bold text-red-600">৳${product.price.toFixed(2)}</span>
+                                <button class="add-to-cart-btn bg-red-600 text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-red-700" data-id="${product.id}">কার্টে যোগ করুন</button>
+                            </div>
+                        </div>
+                    `;
+                    productGrid.appendChild(productCard);
+                });
+            }
+
+            function renderProductDetail(productId) {
+                const product = products.find(p => p.id == productId);
+                if (!product) {
+                    productDetailSection.innerHTML = `<div class="container mx-auto text-center"><p class="text-2xl text-red-600">পণ্য পাওয়া যায়নি!</p></div>`;
+                    return;
+                }
+                productDetailSection.innerHTML = `
+                    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="grid md:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <img src="${product.image}" alt="${product.name}" class="rounded-lg shadow-xl w-full">
+                            </div>
+                            <div>
+                                <button data-page="products" class="nav-link text-sm mb-4 p-0"><i class="fas fa-arrow-left mr-2"></i>পণ্যের তালিকায় ফিরে যান</button>
+                                <h1 class="text-4xl font-bold text-gray-800">${product.name}</h1>
+                                <p class="text-3xl font-bold text-red-600 my-4">৳${product.price.toFixed(2)}</p>
+                                <p class="text-gray-600 text-lg mb-6">${product.description}</p>
+                                <div class="flex items-center gap-4">
+                                    <button class="add-to-cart-btn btn-primary" data-id="${product.id}">কার্টে যোগ করুন</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                productDetailSection.querySelector('.nav-link').addEventListener('click', handleNavClick);
+            }
+
+            function renderCart() {
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = `
+                        <div class="text-center">
+                            <p class="text-xl text-gray-600 mb-6">আপনার কার্ট খালি।</p>
+                            <button data-page="products" class="nav-link btn-primary">কেনাকাটা চালিয়ে যান</button>
+                        </div>
+                    `;
+                    cartItemsContainer.querySelector('.nav-link').addEventListener('click', handleNavClick);
+                    return;
+                }
+
+                let cartHTML = `
+                    <div class="border-b pb-4 mb-4 grid grid-cols-6 gap-4 font-bold text-gray-600">
+                        <div class="col-span-3">পণ্য</div>
+                        <div class="text-center">মূল্য</div>
+                        <div class="text-center">পরিমাণ</div>
+                        <div class="text-right">মোট</div>
+                    </div>
+                `;
+                let subtotal = 0;
+
+                cart.forEach(item => {
+                    const product = products.find(p => p.id === item.id);
+                    const itemTotal = item.quantity * product.price;
+                    subtotal += itemTotal;
+                    cartHTML += `
+                        <div class="grid grid-cols-6 gap-4 items-center border-b py-4">
+                            <div class="col-span-3 flex items-center gap-4">
+                                <img src="${product.image}" alt="${product.name}" class="w-20 h-20 object-cover rounded-md">
+                                <div>
+                                    <p class="font-bold text-lg">${product.name}</p>
+                                    <button class="remove-from-cart text-red-500 text-sm hover:underline" data-id="${product.id}">সরিয়ে ফেলুন</button>
+                                </div>
+                            </div>
+                            <div class="text-center text-gray-700">৳${product.price.toFixed(2)}</div>
+                            <div class="text-center">
+                                <input type="number" min="1" value="${item.quantity}" data-id="${product.id}" class="quantity-input w-16 text-center border rounded-md p-1">
+                            </div>
+                            <div class="text-right font-bold">৳${itemTotal.toFixed(2)}</div>
+                        </div>
+                    `;
+                });
+
+                cartHTML += `
+                    <div class="mt-8 flex justify-end">
+                        <div class="w-full max-w-sm">
+                            <div class="flex justify-between text-xl font-semibold">
+                                <span>মোট</span>
+                                <span>৳${subtotal.toFixed(2)}</span>
+                            </div>
+                            <p class="text-gray-500 text-right my-2">ট্যাক্স এবং শিপিং চেকআউটে গণনা করা হবে।</p>
+                            <button data-page="checkout" class="nav-link btn-primary w-full mt-4">চেকআউটে এগিয়ে যান</button>
+                        </div>
+                    </div>
+                `;
+
+                cartItemsContainer.innerHTML = cartHTML;
+                cartItemsContainer.querySelector('.nav-link').addEventListener('click', handleNavClick);
+            }
+
+            function renderCheckout() {
+                if (cart.length === 0) {
+                    checkoutContainer.innerHTML = `
+                        <div class="text-center col-span-2">
+                            <p class="text-xl text-gray-600 mb-6">চেকআউট করার জন্য আপনার কার্টে কোনো পণ্য নেই।</p>
+                            <button data-page="products" class="nav-link btn-primary">কেনাকাটা চালিয়ে যান</button>
+                        </div>
+                    `;
+                    checkoutContainer.querySelector('.nav-link').addEventListener('click', handleNavClick);
+                    return;
+                }
+
+                let subtotal = 0;
+                let orderSummaryHTML = `
+                    <h3 class="text-2xl font-bold mb-4">আপনার অর্ডার</h3>
+                    <div class="space-y-4">
+                `;
+                cart.forEach(item => {
+                    const product = products.find(p => p.id === item.id);
+                    const itemTotal = item.quantity * product.price;
+                    subtotal += itemTotal;
+                    orderSummaryHTML += `
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center gap-4">
+                                <img src="${product.image}" alt="${product.name}" class="w-16 h-16 object-cover rounded-md">
+                                <div>
+                                    <p class="font-semibold">${product.name}</p>
+                                    <p class="text-sm text-gray-500">পরিমাণ: ${item.quantity}</p>
+                                </div>
+                            </div>
+                            <p class="font-semibold">৳${itemTotal.toFixed(2)}</p>
+                        </div>
+                    `;
+                });
+
+                const shipping = 50;
+                const total = subtotal + shipping;
+
+                orderSummaryHTML += `
+                    </div>
+                    <div class="border-t mt-6 pt-6 space-y-2">
+                        <div class="flex justify-between">
+                            <p>উপমোট</p>
+                            <p>৳${subtotal.toFixed(2)}</p>
+                        </div>
+                        <div class="flex justify-between">
+                            <p>শিপিং</p>
+                            <p>৳${shipping.toFixed(2)}</p>
+                        </div>
+                        <div class="flex justify-between text-xl font-bold">
+                            <p>মোট</p>
+                            <p>৳${total.toFixed(2)}</p>
+                        </div>
+                    </div>
+                `;
+
+                const checkoutFormHTML = `
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">শিপিং বিবরণ</h3>
+                        <form id="checkout-form" class="space-y-6">
+                            <div>
+                                <label for="checkout-name" class="block text-sm font-medium text-gray-700">সম্পূর্ণ নাম *</label>
+                                <input type="text" id="checkout-name" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-3">
+                            </div>
+                            <div>
+                                <label for="checkout-address" class="block text-sm font-medium text-gray-700">সম্পূর্ণ ঠিকানা *</label>
+                                <input type="text" id="checkout-address" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-3">
+                            </div>
+                            <div>
+                                <label for="checkout-phone" class="block text-sm font-medium text-gray-700">ফোন নম্বর *</label>
+                                <input type="tel" id="checkout-phone" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-3">
+                            </div>
+                            <button type="submit" class="btn-primary w-full">অর্ডার করুন</button>
+                        </form>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-lg">
+                        ${orderSummaryHTML}
+                    </div>
+                `;
+                checkoutContainer.innerHTML = checkoutFormHTML;
+            }
+
+            function renderAdminOrders() {
+                if (orders.length === 0) {
+                    orderListContainer.innerHTML = `<p class="text-center text-gray-600">এখনও কোনো অর্ডার নেই।</p>`;
+                    return;
+                }
+
+                let ordersHTML = '';
+                orders.slice().reverse().forEach(order => {
+                    let itemsHTML = '';
+                    order.items.forEach(item => {
+                        const product = products.find(p => p.id === item.id);
+                        itemsHTML += `
+                            <li class="flex items-center justify-between py-1">
+                                <span>${product.name} (x${item.quantity})</span>
+                                <span>৳${(product.price * item.quantity).toFixed(2)}</span>
+                            </li>
+                        `;
+                    });
+
+                    ordersHTML += `
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div>
+                                    <h3 class="font-bold text-lg">অর্ডার #${order.id}</h3>
+                                    <p class="text-sm text-gray-500">${order.date}</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold">গ্রাহকের বিবরণ</h3>
+                                    <p>${order.customer.name}</p>
+                                    <p>${order.customer.address}</p>
+                                    <p>${order.customer.phone}</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold">অর্ডার বিবরণ</h3>
+                                    <ul class="divide-y">${itemsHTML}</ul>
+                                    <div class="border-t mt-2 pt-2 font-bold flex justify-between">
+                                        <span>মোট:</span>
+                                        <span>৳${order.total.toFixed(2)}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                orderListContainer.innerHTML = ordersHTML;
+            }
+
+            // --- CART & ORDER LOGIC ---
+            function addToCart(productId) {
+                const existingItem = cart.find(item => item.id === productId);
+                if (existingItem) {
+                    existingItem.quantity++;
+                } else {
+                    cart.push({ id: productId, quantity: 1 });
+                }
+                updateCartCount();
+                showToast('পণ্য কার্টে যোগ করা হয়েছে!');
+            }
+            
+            function removeFromCart(productId) {
+                cart = cart.filter(item => item.id !== productId);
+                updateCartCount();
+                renderCart();
+            }
+            
+            function updateQuantity(productId, quantity) {
+                const item = cart.find(item => item.id === productId);
+                if (item) {
+                    item.quantity = quantity > 0 ? quantity : 1;
+                }
+                updateCartCount();
+                renderCart();
+            }
+
+            function updateCartCount() {
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                if (totalItems > 0) {
+                    cartCountEl.textContent = totalItems;
+                    cartCountEl.classList.remove('hidden');
+                } else {
+                    cartCountEl.classList.add('hidden');
+                }
+            }
+            
+            function placeOrder(customerDetails) {
+                const subtotal = cart.reduce((sum, item) => {
+                    const product = products.find(p => p.id === item.id);
+                    return sum + (product.price * item.quantity);
+                }, 0);
+                const total = subtotal + 50; // 50 is shipping
+
+                const newOrder = {
+                    id: Date.now(),
+                    customer: customerDetails,
+                    items: [...cart],
+                    total: total,
+                    date: new Date().toLocaleString('bn-BD')
+                };
+
+                orders.push(newOrder);
+                cart = [];
+                updateCartCount();
+                showToast('আপনার অর্ডার সফলভাবে সম্পন্ন হয়েছে!');
+                showPage('home');
+            }
+
+            function showToast(message) {
+                toastEl.textContent = message;
+                toastEl.classList.add('show');
+                setTimeout(() => {
+                    toastEl.classList.remove('show');
+                }, 3000);
+            }
+
+            // --- EVENT LISTENERS ---
+            navLinks.forEach(link => link.addEventListener('click', handleNavClick));
+            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+            if (productFilters) {
+                productFilters.addEventListener('click', function(e) {
+                    if (e.target.tagName === 'BUTTON') {
+                        const filter = e.target.dataset.filter;
+                        productFilters.querySelectorAll('button').forEach(btn => {
+                            btn.classList.remove('bg-red-600', 'text-white');
+                            btn.classList.add('bg-gray-200', 'text-gray-700');
+                        });
+                        e.target.classList.add('bg-red-600', 'text-white');
+                        e.target.classList.remove('bg-gray-200', 'text-gray-700');
+                        
+                        renderProducts(filter);
+                    }
+                });
+            }
+
+            if (faqContainer) {
+                faqContainer.addEventListener('click', (e) => {
+                    const questionButton = e.target.closest('.faq-question');
+                    if (questionButton) {
+                        const faqItem = questionButton.parentElement;
+                        const answer = faqItem.querySelector('.faq-answer');
+                        const icon = questionButton.querySelector('i');
+                        
+                        answer.classList.toggle('hidden');
+                        icon.classList.toggle('rotate-180');
+                    }
+                });
+            }
+            
+            document.body.addEventListener('click', function(e) {
+                if (e.target.classList.contains('add-to-cart-btn')) {
+                    const productId = parseInt(e.target.dataset.id);
+                    addToCart(productId);
+                }
+                if (e.target.classList.contains('remove-from-cart')) {
+                    const productId = parseInt(e.target.dataset.id);
+                    removeFromCart(productId);
+                }
+            });
+            
+            document.body.addEventListener('change', function(e){
+                if(e.target.classList.contains('quantity-input')){
+                    const productId = parseInt(e.target.dataset.id);
+                    const quantity = parseInt(e.target.value);
+                    updateQuantity(productId, quantity);
+                }
+            });
+
+            document.body.addEventListener('submit', function(e) {
+                if (e.target.id === 'checkout-form') {
+                    e.preventDefault();
+                    const customerDetails = {
+                        name: document.getElementById('checkout-name').value,
+                        address: document.getElementById('checkout-address').value,
+                        phone: document.getElementById('checkout-phone').value,
+                    };
+                    placeOrder(customerDetails);
+                }
+            });
+
+            adminLoginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const enteredPassword = adminPasswordInput.value;
+                if (enteredPassword === ADMIN_PASSWORD) {
+                    isAdminAuthenticated = true;
+                    adminPasswordModal.classList.add('hidden');
+                    adminPasswordInput.value = '';
+                    adminErrorMsg.classList.add('hidden');
+                    showPage('admin');
+                } else {
+                    adminErrorMsg.classList.remove('hidden');
+                    adminPasswordInput.value = '';
+                }
+            });
+
+            cancelAdminLoginBtn.addEventListener('click', () => {
+                adminPasswordModal.classList.add('hidden');
+                adminPasswordInput.value = '';
+                adminErrorMsg.classList.add('hidden');
+            });
+
+            window.addEventListener('popstate', function() {
+                const url = new URL(window.location);
+                const hash = url.hash.substring(1) || 'home';
+                showPage(hash, url.searchParams);
+            });
+
+            // --- INITIALIZATION ---
+            function init() {
+                const url = new URL(window.location);
+                const hash = url.hash.substring(1) || 'home';
+                showPage(hash, url.searchParams);
+                
+                window.app = {
+                    handleProductClick
+                };
+            }
+
+            init();
+        });
+    </script>
+</body>
+</html>
+
